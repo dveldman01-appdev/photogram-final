@@ -102,5 +102,15 @@ Rails.application.routes.draw do
              
   #------------------------------
 
+  # Display Users
+
+  # READ
+  get("/", { :controller => "users", :action => "index" })
+
+  get("/users", { :controller => "users", :action => "index" })
+
+  get("/users/:path_id", { :controller => "users", :action => "show" })
+
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
