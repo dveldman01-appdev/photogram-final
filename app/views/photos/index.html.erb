@@ -5,41 +5,35 @@
     </h1>
   </div>
 </div>
-
 <% if @current_user != nil %>
-
-<div>
   <div>
-    <h2>
-      Add a new photo
-    </h2>
-
-    <form action="/insert_photo" method="post">
-      <div>
-        <label for="image_box">
-          Image
-        </label>
-
-        <input type="text" id="image_box" name="query_image">
-      </div>
-
-      <div>
-        <label for="caption_box">
-          Caption
-        </label>
-
-        <textarea id="caption_box" name="query_caption" rows="3"></textarea>
-      </div>
-
-      <button>
-        Create photo
-      </button>
-    </form>
+    <div>
+      <h2>
+        Add a new photo
+      </h2>
+      <form action="/insert_photo" method="post">
+        <div>
+          <label for="image_box">
+            Image
+          </label>
+          <input type="text" id="image_box" name="query_image">
+        </div>
+        <div>
+          <label for="caption_box">
+            Caption
+          </label>
+          <textarea id="caption_box" name="query_caption" rows="3" placeholder="Enter a caption for the photo..."></textarea>
+        </div>
+        <button>
+          Create photo
+        </button>
+      </form>
+    </div>
   </div>
-</div>
 <% end %>
 
 <hr>
+
 <div>
   <div>
     <table border="1">
@@ -47,59 +41,48 @@
         <th>
           Image
         </th>
-
         <th>
           Caption
         </th>
-
         <th>
           Owner
         </th>
-
         <th>
           Posted
         </th>
-
         <th>
           Likes
         </th>
-
         <th>
         </th>
       </tr>
-
       <% @list_of_photos.each do |a_photo| %>
-      <tr>
-        <td>
-          <img src="<%= a_photo.image %>"
-        </td>
-
-        <td>
-          <%= a_photo.caption %>
-        </td>
-
-        <td>
-          <%= a_photo.owner.username %>
-        </td>
-          
-        <td>
-          <%= time_ago_in_words(a_photo.created_at) %> ago
-        </td>
-
-        <td>
-          <%= a_photo.likes_count %>
-        </td>
-
-        <td>
-          <a href="/photos/<%= a_photo.id %>">
-            Show details
-          </a>
-        </td>
-
-      </tr>
-      <% end %>
-    </table>
+        <% if a_photo.owner.private != true %>
+          <tr>
+            <td>
+              <img src="<%= a_photo.image %>"
+          </td>
+              <td>
+                <%= a_photo.caption %>
+              </td>
+              <td>
+                <%= a_photo.owner.username %>
+              </td>
+              <td>
+                <%= time_ago_in_words(a_photo.created_at) %> ago
+              </td>
+              <td>
+                <%= a_photo.likes_count %>
+              </td>
+              <td>
+                <a href="/photos/<%= a_photo.id %>">
+                  Show details
+                </a>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+    </div>
   </div>
-</div>
-
-<hr>
+  <hr>
