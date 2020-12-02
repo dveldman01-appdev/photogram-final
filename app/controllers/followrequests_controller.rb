@@ -1,6 +1,6 @@
-class FollowrequestsController < ApplicationController
+class FollowRequestsController < ApplicationController
   def index
-    matching_followrequests = Followrequest.all
+    matching_followrequests = FollowRequest.all
 
     @list_of_followrequests = matching_followrequests.order({ :created_at => :desc })
 
@@ -10,7 +10,7 @@ class FollowrequestsController < ApplicationController
   def show
     the_id = params.fetch("path_id")
 
-    matching_followrequests = Followrequest.where({ :id => the_id })
+    matching_followrequests = FollowRequest.where({ :id => the_id })
 
     @the_followrequest = matching_followrequests.at(0)
 
@@ -21,7 +21,7 @@ class FollowrequestsController < ApplicationController
     the_request_recipient_id = params.fetch("query_recipient_id")
     the_recipient = User.where({ :id => the_request_recipient_id }).at(0)
         
-    the_followrequest = Followrequest.new
+    the_followrequest = FollowRequest.new
     the_followrequest.recipient_id = the_request_recipient_id
     the_followrequest.sender_id = session.fetch(:user_id)
 
@@ -42,7 +42,7 @@ class FollowrequestsController < ApplicationController
 
   def update
     the_id = params.fetch("path_id")
-    the_followrequest = Followrequest.where({ :id => the_id }).at(0)
+    the_followrequest = FollowRequest.where({ :id => the_id }).at(0)
 
     the_followrequest.recipient_id = params.fetch("query_recipient_id")
     the_followrequest.sender_id = params.fetch("query_sender_id")
@@ -50,18 +50,18 @@ class FollowrequestsController < ApplicationController
 
     if the_followrequest.valid?
       the_followrequest.save
-      redirect_to("/followrequests/#{the_followrequest.id}", { :notice => "Followrequest updated successfully."} )
+      redirect_to("/followrequests/#{the_followrequest.id}", { :notice => "FollowRequest updated successfully."} )
     else
-      redirect_to("/followrequests/#{the_followrequest.id}", { :alert => "Followrequest failed to update successfully." })
+      redirect_to("/followrequests/#{the_followrequest.id}", { :alert => "FollowRequest failed to update successfully." })
     end
   end
 
   def destroy
     the_id = params.fetch("path_id")
-    the_followrequest = Followrequest.where({ :id => the_id }).at(0)
+    the_followrequest = FollowRequest.where({ :id => the_id }).at(0)
 
     the_followrequest.destroy
 
-    redirect_to("/followrequests", { :notice => "Followrequest deleted successfully."} )
+    redirect_to("/followrequests", { :notice => "FollowRequest deleted successfully."} )
   end
 end

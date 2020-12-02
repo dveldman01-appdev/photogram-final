@@ -10,20 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_02_184311) do
-
-  create_table "FollowRequests", force: :cascade do |t|
-    t.integer "recipient_id"
-    t.integer "sender_id"
-    t.string "status"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
+ActiveRecord::Schema.define(version: 2020_12_01_221947) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "author_id"
     t.text "body"
     t.integer "photo_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "follow_requests", force: :cascade do |t|
+    t.integer "recipient_id"
+    t.integer "sender_id"
+    t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
