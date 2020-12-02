@@ -58,10 +58,10 @@
       </tr>
       <% @list_of_photos.each do |a_photo| %>
         <% if a_photo.owner.private != true %>
-          <tr>
-            <td>
-              <img src="<%= a_photo.image %>"
-          </td>
+            <tr>
+              <td>
+                <img src="<%= a_photo.image %>"
+              </td>
               <td>
                 <%= a_photo.caption %>
               </td>
