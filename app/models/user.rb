@@ -28,7 +28,7 @@ has_many(:received_follow_requests, { :through => :received_follow_requests, :so
 
 validates(:username, { :presence => true })
 validates(:username, { :uniqueness => true })
-validates(:private, { :presence => true })
+validates_inclusion_of :private, :in => [true, false]
 
 
 end
