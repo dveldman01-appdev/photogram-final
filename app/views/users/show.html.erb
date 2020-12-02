@@ -5,7 +5,7 @@
   <dd><%= @the_user.private %></dd>
 
   <dt>Followers</dt>
-  <dd>TBD
+  <dd><%= @total_followers %>
  
     <div>
           <form action="/insert_followrequest" method="post">
@@ -20,7 +20,7 @@
   </dd>
 
   <dt>Following</dt>
-  <dd>TBD</dd>
+  <dd><%= @total_following %></dd>
 
 </dl>
 

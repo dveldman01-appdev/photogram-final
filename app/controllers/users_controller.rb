@@ -15,6 +15,9 @@ class UsersController < ApplicationController
 
     @the_user = matching_users.at(0)
 
+    @total_followers = @the_user.received_follow_requests.where({ :status => "accepted"}).count
+    @total_following = @the_user.sent_follow_requests.where({ :status => "accepted"}).count
+
     render({ :template => "users/show.html.erb" })
   end
 
