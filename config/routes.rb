@@ -21,19 +21,19 @@ Rails.application.routes.draw do
   # Routes for the Followrequest resource:
 
   # CREATE
-  post("/insert_followrequest", { :controller => "followrequests", :action => "create" })
+  post("/insert_follow_request", { :controller => "follow_requests", :action => "create" })
           
   # READ
-  get("/followrequests", { :controller => "followrequests", :action => "index" })
+  get("/follow_requests", { :controller => "follow_requests", :action => "index" })
   
-  get("/followrequests/:path_id", { :controller => "followrequests", :action => "show" })
+  get("/follow_requests/:path_id", { :controller => "follow_requests", :action => "show" })
   
   # UPDATE
   
-  post("/modify_followrequest/:path_id", { :controller => "followrequests", :action => "update" })
+  post("/modify_follow_request/:path_id", { :controller => "follow_requests", :action => "update" })
   
   # DELETE
-  get("/delete_followrequest/:path_id", { :controller => "followrequests", :action => "destroy" })
+  get("/delete_follow_request/:sender_id/:receiver_id", { :controller => "follow_requests", :action => "destroy" })
 
   #------------------------------
 

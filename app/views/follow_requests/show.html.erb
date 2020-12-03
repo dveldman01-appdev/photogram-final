@@ -6,14 +6,14 @@
 
     <div>
       <div>
-        <a href="/followrequests">
+        <a href="/follow_requests">
           Go back
         </a>
       </div>
 
       <div>
-        <a href="/delete_followrequest/<%= @the_followrequest.id %>">
-          Delete followrequest
+        <a href="/delete_follow_request/<%= @the_followrequest.id %>">
+          Delete follow request
         </a>
       </div>
     </div>
@@ -63,10 +63,10 @@
 <div>
   <div>
     <h2>
-      Edit followrequest
+      Edit follow request
     </h2>
 
-    <form action="/modify_followrequest/<%= @the_followrequest.id %>"  method="post" >
+    <form action="/modify_follow_request/<%= @the_followrequest.id %>"  method="post" >
       <div>
         <label for="recipient_id_box">
           Recipient
@@ -92,7 +92,7 @@
       </div>
 
       <button>
-        Update followrequest
+        Update follow request
       </button>
     </form>
   </div>
