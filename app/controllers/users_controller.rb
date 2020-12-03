@@ -53,4 +53,19 @@ skip_before_action(:force_user_sign_in, { :only => [:index] })
     render({ :template => "users/show_feed.html.erb" })
   end
 
+  def show_discover
+    the_id = params.fetch("path_id")
+
+    matching_users = User.where({ :username => the_id })
+
+    @the_user = matching_users.at(0)
+
+    @total_followers = @the_user.received_follow_requests.where({ :status => "accepted"}).count
+    @total_following = @the_user.sent_follow_requests.where({ :status => "accepted"}).count
+
+    @following = @the_user.sent_follow_requests.where({ :status => "accepted"})
+
+    render({ :template => "users/show_discover.html.erb" })
+  end
+
 end
