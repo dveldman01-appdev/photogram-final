@@ -6,21 +6,53 @@
 
   <dt>Followers</dt>
   <dd><%= @total_followers %>
- 
-    <div>
-          <form action="/insert_follow_request" method="post">
-            <input type="hidden" name="query_recipient_id" value="<%= @the_user.id %>">
+  <% if @current_user.id != @the_user.id %>
+    <% if @current_user.sent_follow_requests.map(&:recipient_id).include? @the_user.id %>
+      <% if @current_user.sent_follow_requests.where({ :recipient_id => @the_user.id }).at(0).status == "pending" %>
+      Request sent <a href="/delete_follow_request/<%= @current_user.id %>/<%= @the_user.id %>">Cancel</a>
+      <% else %>
+      <a href="/delete_follow_request/<%= @current_user.id %>/<%= @the_user.id %>">Unfollow</a>
+      <% end %>
+    <% else %> 
+        <div>
+              <form action="/insert_follow_request" method="post">
+                <input type="hidden" name="query_recipient_id" value="<%= @the_user.id %>">
 
-            <button>
-              Follow
-            </button>
-          </form>
-    </div>
-
+                <button>
+                  Follow
+                </button>
+              </form>
+        </div>
+    <% end %>
+  <% end %>
   </dd>
 
   <dt>Following</dt>
   <dd><%= @total_following %></dd>
+
+  <% if @current_user.id == @the_user.id %>
+    <dt>Edit user</dt>
+    <dd>
+      <form action="/modify_user" method="post">
+        <div>
+          <label for="username">
+            Username
+          </label>
+          <input type="text" id="username" name="query_username" value="<%= @current_user.username %>">
+        </div>
+        <div>
+          <label for="private">
+            Private?
+          </label>
+          <input type="checkbox" id="private" name="query_private">
+        </div>
+        <button>
+          Update user
+        </button>
+      </form>
+    
+    </dd>
+  <% end %>
 
 </dl>
 
