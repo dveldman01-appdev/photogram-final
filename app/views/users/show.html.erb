@@ -24,6 +24,13 @@
               </form>
         </div>
     <% end %>
+  <% else %>
+    <dt>Pending follow requests</dt>
+    <% @pending_followers.each do |pending| %>
+      <dd>
+        <%= pending.sender.username %>
+      </dd>
+    <% end %>
   <% end %>
   </dd>
 

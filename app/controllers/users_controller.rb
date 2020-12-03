@@ -20,6 +20,8 @@ skip_before_action(:force_user_sign_in, { :only => [:index] })
     @total_followers = @the_user.received_follow_requests.where({ :status => "accepted"}).count
     @total_following = @the_user.sent_follow_requests.where({ :status => "accepted"}).count
 
+    @pending_followers = @the_user.received_follow_requests.where({ :status => "pending"})
+
     render({ :template => "users/show.html.erb" })
   end
 
