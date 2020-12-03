@@ -7,16 +7,6 @@
   <dt>Followers</dt>
   <dd><%= @total_followers %>
  
-    <div>
-          <form action="/insert_followrequest" method="post">
-            <input type="hidden" name="query_recipient_id" value="<%= @the_user.id %>">
-
-            <button>
-              Follow
-            </button>
-          </form>
-    </div>
-
   </dd>
 
   <dt>Following</dt>
@@ -41,7 +31,7 @@
   </ul>
 </nav>
 
-<h2>Own photos (<%= @the_user.photos.count %>)</h2>
+<h2>Liked photos (<%= @likes.count %>)</h2>
 
 <table border="1">
   <tr>
@@ -68,32 +58,32 @@
     <th></th>
   </tr>
 
-<% @the_user.photos.each do |a_photo| %>
+<% @likes.each do |a_like| %>
 
   <tr>
 
     <td>
-      <img src="<%= a_photo.image %>">
+      <img src="<%= a_like.photo.image %>" class="img-responsive">
     </td>
 
     <td>
-      <%= @the_user.username %>
+      <%= a_like.photo.owner.username %>
     </td>
 
     <td>
-      <%= a_photo.caption %>
+      <%= a_like.photo.caption %>
     </td>
 
     <td>
-      <%= time_ago_in_words(a_photo.created_at) %> ago
+      <%= time_ago_in_words(a_like.photo.created_at) %> ago
     </td>
 
     <td>
-      <%= a_photo.likes_count %>
+      <%= a_like.photo.likes_count %>
     </td>
 
     <td>
-      <a href="/photos/<%= a_photo.id %>">
+      <a href="/photos/<%= a_like.photo.id %>">
         Show details
       </a>
     </td>

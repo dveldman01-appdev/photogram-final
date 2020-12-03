@@ -109,8 +109,17 @@ Rails.application.routes.draw do
 
   get("/users", { :controller => "users", :action => "index" })
 
+  # USER PROFILE
   get("/users/:path_id", { :controller => "users", :action => "show" })
 
+  # USER LIKED PHOTOS
+  get("/users/:path_id/liked_photos", { :controller => "users", :action => "show_liked_photos" })
+
+  # USER FEED
+  get("/users/:path_id/feed", { :controller => "users", :action => "show_feed" })
+  
+  # USER DISCOVER
+  get("/users/:path_id/discover", { :controller => "users", :action => "show_discover" })
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
